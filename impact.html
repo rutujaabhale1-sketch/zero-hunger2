@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="description" content="See the impact of Zero Hunger Initiative. Learn how we're helping communities and ending hunger.">
+    <meta name="keywords" content="hunger relief impact, food assistance statistics, community impact, charity results">
+    <meta name="author" content="Zero Hunger Initiative">
+    <title>Our Impact - Zero Hunger Initiative</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-green-600 text-2xl mr-3"></i>
+                    <span class="font-bold text-xl text-gray-800">Zero Hunger</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600 transition">Home</a>
+                    <a href="donate.html" class="text-gray-700 hover:text-green-600 transition">Donate Food</a>
+                    <a href="request.html" class="text-gray-700 hover:text-green-600 transition">Request Food</a>
+                    <a href="find.html" class="text-gray-700 hover:text-green-600 transition">Find Food Banks</a>
+                    <a href="map.html" class="text-gray-700 hover:text-green-600 transition">Live Map</a>
+                    <a href="volunteer.html" class="text-gray-700 hover:text-green-600 transition">Volunteer</a>
+                    <a href="impact.html" class="text-green-600 font-semibold hover:text-green-600 transition">Our Impact</a>
+                </div>
+                <button class="md:hidden" id="mobile-menu-button">
+                    <i class="fas fa-bars text-gray-700 text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Home</a>
+                <a href="donate.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Donate Food</a>
+                <a href="request.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Request Food</a>
+                <a href="find.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Find Food Banks</a>
+                <a href="map.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Live Map</a>
+                <a href="volunteer.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Volunteer</a>
+                <a href="impact.html" class="block px-3 py-2 text-green-600 font-semibold hover:text-green-600">Our Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Impact</h1>
+                <p class="text-xl md:text-2xl text-indigo-100">Making a difference, one meal at a time</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Statistics -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">By the Numbers</h2>
+                <p class="text-xl text-gray-600">Our collective impact in the fight against hunger</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-indigo-600 mb-4" data-target="50000">0</div>
+                    <p class="text-gray-600 text-lg">Meals Distributed</p>
+                    <p class="text-gray-500 text-sm mt-2">This year</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-indigo-600 mb-4" data-target="2500">0</div>
+                    <p class="text-gray-600 text-lg">Families Helped</p>
+                    <p class="text-gray-500 text-sm mt-2">Monthly</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-indigo-600 mb-4" data-target="10000">0</div>
+                    <p class="text-gray-600 text-lg">kg Food Waste Reduced</p>
+                    <p class="text-gray-500 text-sm mt-2">This year</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-indigo-600 mb-4" data-target="500">0</div>
+                    <p class="text-gray-600 text-lg">Active Volunteers</p>
+                    <p class="text-gray-500 text-sm mt-2">Community heroes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Success Stories</h2>
+                <p class="text-xl text-gray-600">Real lives changed through our collective efforts</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">The Martinez Family</h3>
+                            <p class="text-sm text-gray-600">New York, NY</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"When I lost my job, I didn't know how I would feed my three children. Zero Hunger provided us with weekly food assistance that kept us going until I found new employment."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>
+                        <span>Helped for 3 months</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">James Thompson</h3>
+                            <p class="text-sm text-gray-600">Los Angeles, CA</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"As a senior on fixed income, the rising food costs were overwhelming. The food bank deliveries have been a lifesaver, allowing me to maintain my independence and dignity."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>
+                        <span>Regular recipient for 1 year</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-child text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Sarah's Kids</h3>
+                            <p class="text-sm text-gray-600">Chicago, IL</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The school backpack program ensures my children have food on weekends. They come home excited every Friday with enough food for the whole family."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>
+                        <span>Weekly assistance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Impact -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Community Impact</h2>
+                <p class="text-xl text-gray-600">Building stronger, healthier communities</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-indigo-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-users text-indigo-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Families Strengthened</h3>
+                    <p class="text-gray-600">Over 2,500 families receive regular food assistance through our network, reducing stress and improving family wellbeing.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-indigo-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-leaf text-indigo-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Environmental Impact</h3>
+                    <p class="text-gray-600">Preventing over 10,000 kg of food waste by redistributing excess food to those who need it most.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-indigo-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-indigo-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Community Building</h3>
+                    <p class="text-gray-600">Creating stronger communities through food security, mutual support, and volunteer engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Organizations -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Partners</h2>
+                <p class="text-xl text-gray-600">Working together to end hunger</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <div class="bg-white rounded-lg shadow p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-store text-indigo-600 text-3xl mb-2"></i>
+                        <p class="text-sm text-gray-600">Local Grocers</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-hospital text-indigo-600 text-3xl mb-2"></i>
+                        <p class="text-sm text-gray-600">Healthcare</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-school text-indigo-600 text-3xl mb-2"></i>
+                        <p class="text-sm text-gray-600">Schools</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-church text-indigo-600 text-3xl mb-2"></i>
+                        <p class="text-sm text-gray-600">Faith Groups</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-building text-indigo-600 text-3xl mb-2"></i>
+                        <p class="text-sm text-gray-600">Businesses</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-globe text-indigo-600 text-3xl mb-2"></i>
+                        <p class="text-sm text-gray-600">NGOs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Annual Progress -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Year-over-Year Growth</h2>
+                <p class="text-xl text-gray-600">Our expanding impact over the years</p>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">2021</div>
+                        <p class="text-gray-600">Started with 5 locations</p>
+                        <p class="text-sm text-gray-500">1,000 meals served</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">2022</div>
+                        <p class="text-gray-600">Expanded to 25 locations</p>
+                        <p class="text-sm text-gray-500">10,000 meals served</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">2023</div>
+                        <p class="text-gray-600">Reached 50 locations</p>
+                        <p class="text-sm text-gray-500">30,000 meals served</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">2024</div>
+                        <p class="text-gray-600">Now at 85+ locations</p>
+                        <p class="text-sm text-gray-500">50,000+ meals served</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What People Are Saying</h2>
+                <p class="text-xl text-gray-600">Feedback from our community</p>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-quote-left text-indigo-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <p class="text-gray-600 mb-4">"Zero Hunger has transformed our community. The coordination between donors, volunteers, and recipients is seamless. It's amazing to see how much food we can redirect from waste to those who need it."</p>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Maria Rodriguez</p>
+                                    <p class="text-sm text-gray-600">Community Leader</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-quote-left text-indigo-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <p class="text-gray-600 mb-4">"As a restaurant owner, I hated throwing away perfectly good food. Zero Hunger makes it easy to donate excess food and know it's going to help people in my neighborhood."</p>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">David Chen</p>
+                                    <p class="text-sm text-gray-600">Restaurant Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-indigo-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Be Part of the Solution</h2>
+            <p class="text-xl mb-8 text-indigo-100">Join us in our mission to end hunger. Every contribution makes a difference.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="donate.html" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    <i class="fas fa-hand-holding-heart mr-2"></i>Donate Food
+                </a>
+                <a href="volunteer.html" class="bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-800 transition">
+                    <i class="fas fa-user-plus mr-2"></i>Become a Volunteer
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-utensils text-green-400 text-2xl mr-3"></i>
+                        <span class="font-bold text-xl">Zero Hunger</span>
+                    </div>
+                    <p class="text-gray-400">Connecting communities to end hunger, one meal at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="donate.html" class="hover:text-white transition">Donate Food</a></li>
+                        <li><a href="request.html" class="hover:text-white transition">Request Food</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition">Volunteer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>1-800-HUNGER</li>
+                        <li><i class="fas fa-envelope mr-2"></i>help@zerohunger.org</li>
+                        <li><i class="fas fa-clock mr-2"></i>24/7 Helpline Available</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Zero Hunger Initiative. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

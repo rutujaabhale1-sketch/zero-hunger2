@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="description" content="Zero Hunger Initiative - Connecting food donors with people in need. Donate food, request assistance, or volunteer to help end hunger in your community.">
+    <meta name="keywords" content="food donation, hunger relief, volunteer, food bank, charity, community support">
+    <meta name="author" content="Zero Hunger Initiative">
+    <title>Zero Hunger Initiative - Feed the Needy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-green-600 text-2xl mr-3"></i>
+                    <span class="font-bold text-xl text-gray-800">Zero Hunger</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-green-600 font-semibold hover:text-green-600 transition">Home</a>
+                    <a href="donate.html" class="text-gray-700 hover:text-green-600 transition">Donate Food</a>
+                    <a href="request.html" class="text-gray-700 hover:text-green-600 transition">Request Food</a>
+                    <a href="find.html" class="text-gray-700 hover:text-green-600 transition">Find Food Banks</a>
+                    <a href="map.html" class="text-gray-700 hover:text-green-600 transition">Live Map</a>
+                    <a href="volunteer.html" class="text-gray-700 hover:text-green-600 transition">Volunteer</a>
+                    <a href="impact.html" class="text-gray-700 hover:text-green-600 transition">Our Impact</a>
+                </div>
+                <button class="md:hidden" id="mobile-menu-button">
+                    <i class="fas fa-bars text-gray-700 text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-green-600 font-semibold hover:text-green-600">Home</a>
+                <a href="donate.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Donate Food</a>
+                <a href="request.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Request Food</a>
+                <a href="find.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Find Food Banks</a>
+                <a href="map.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Live Map</a>
+                <a href="volunteer.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Volunteer</a>
+                <a href="impact.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Our Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-r from-green-600 to-green-700 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Together We Can End Hunger</h1>
+                <p class="text-xl md:text-2xl mb-8 text-green-100">Connecting food donors with people in need. Every meal matters.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="window.location.href='donate.html'" class="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                        <i class="fas fa-hand-holding-heart mr-2"></i>Donate Food
+                    </button>
+                    <button onclick="window.location.href='request.html'" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-green-600 transition transform hover:scale-105">
+                        <i class="fas fa-hands-helping mr-2"></i>Request Food
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-green-600 mb-2" data-target="50000">0</div>
+                    <div class="text-gray-600">Meals Distributed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-green-600 mb-2" data-target="1200">0</div>
+                    <div class="text-gray-600">Active Donors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-green-600 mb-2" data-target="85">0</div>
+                    <div class="text-gray-600">Partner Organizations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-green-600 mb-2" data-target="500">0</div>
+                    <div class="text-gray-600">Volunteers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Food Section -->
+    <section id="donate" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Donate Food</h2>
+                <p class="text-xl text-gray-600">Share your excess food with those in need</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">How It Works</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-3 mr-4">
+                                <i class="fas fa-list text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">List Your Food</h4>
+                                <p class="text-gray-600">Tell us what food you have available</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-3 mr-4">
+                                <i class="fas fa-clock text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Set Pickup Time</h4>
+                                <p class="text-gray-600">Choose when volunteers can collect the food</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-3 mr-4">
+                                <i class="fas fa-truck text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">We Arrange Pickup</h4>
+                                <p class="text-gray-600">Volunteers collect and deliver to those in need</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <form id="donation-form">
+                        <h3 class="text-xl font-semibold mb-6 text-gray-800">Donate Now</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Food Type</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                                    <option value="">Select food type</option>
+                                    <option value="perishable">Perishable (Fresh produce, dairy)</option>
+                                    <option value="non-perishable">Non-perishable (Canned, packaged)</option>
+                                    <option value="cooked">Cooked Meals</option>
+                                    <option value="bakery">Bakery Items</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Quantity (servings)</label>
+                                <input type="number" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Pickup Address</label>
+                                <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" rows="3" required></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Preferred Pickup Time</label>
+                                <input type="datetime-local" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                                Submit Donation
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Food Section -->
+    <section id="request" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Request Food</h2>
+                <p class="text-xl text-gray-600">If you're in need, we're here to help</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-gray-50 rounded-lg shadow-lg p-8">
+                <form id="request-form">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Contact Number</label>
+                            <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" name="requester-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 form-input">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Family Size</label>
+                            <input type="number" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Delivery Address</label>
+                            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" rows="3" required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Urgency Level</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                                <option value="">Select urgency</option>
+                                <option value="immediate">Immediate (Within 2 hours)</option>
+                                <option value="today">Today (Within 6 hours)</option>
+                                <option value="tomorrow">Tomorrow</option>
+                                <option value="this-week">This week</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Special Requirements</label>
+                            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" rows="3" placeholder="Dietary restrictions, allergies, etc."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                            Submit Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="map" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Live Location Map</h2>
+                <p class="text-xl text-gray-600">Find food banks, donation centers, and request locations near you</p>
+            </div>
+            
+            <!-- Map Controls -->
+            <div class="bg-gray-50 rounded-lg shadow-lg p-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Search Location</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="map-search" placeholder="Enter address or zip code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500">
+                            <button onclick="searchMapLocation()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Filter Locations</label>
+                        <select id="location-filter" onchange="filterMapLocations()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500">
+                            <option value="all">All Locations</option>
+                            <option value="food-banks">Food Banks</option>
+                            <option value="donation-centers">Donation Centers</option>
+                            <option value="request-points">Request Points</option>
+                            <option value="volunteer-hubs">Volunteer Hubs</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Your Location</label>
+                        <button onclick="getCurrentLocation()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-location-crosshairs mr-2"></i>Use My Location
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden" style="height: 600px;">
+                <div id="interactive-map" class="w-full h-full"></div>
+            </div>
+
+            <!-- Map Legend -->
+            <div class="mt-6 bg-gray-50 rounded-lg p-4">
+                <h3 class="font-semibold text-gray-800 mb-3">Map Legend</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-green-600 rounded-full mr-2"></div>
+                        <span>Food Banks</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-blue-600 rounded-full mr-2"></div>
+                        <span>Donation Centers</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-orange-600 rounded-full mr-2"></div>
+                        <span>Request Points</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-purple-600 rounded-full mr-2"></div>
+                        <span>Volunteer Hubs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Food Banks Section -->
+    <section id="find" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Find Food Banks Near You</h2>
+                <p class="text-xl text-gray-600">Locate food assistance in your area</p>
+            </div>
+            <div class="max-w-2xl mx-auto mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex gap-4">
+                        <input type="text" id="location-search" placeholder="Enter your city or zip code" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500">
+                        <button onclick="searchFoodBanks()" class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition">
+                            <i class="fas fa-search mr-2"></i>Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="food-banks-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Food bank cards will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section id="volunteer" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Become a Volunteer</h2>
+                <p class="text-xl text-gray-600">Join us in the fight against hunger</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Volunteer Opportunities</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 mb-2"><i class="fas fa-truck text-green-600 mr-2"></i>Food Delivery Driver</h4>
+                            <p class="text-gray-600">Help collect and deliver food donations to those in need</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 mb-2"><i class="fas fa-warehouse text-green-600 mr-2"></i>Food Bank Assistant</h4>
+                            <p class="text-gray-600">Sort and organize food at local food banks</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 mb-2"><i class="fas fa-phone text-green-600 mr-2"></i>Helpline Support</h4>
+                            <p class="text-gray-600">Answer calls and help coordinate food assistance</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 mb-2"><i class="fas fa-bullhorn text-green-600 mr-2"></i>Community Outreach</h4>
+                            <p class="text-gray-600">Help spread awareness about our services</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg shadow-lg p-8">
+                    <h3 class="text-xl font-semibold mb-6 text-gray-800">Sign Up to Volunteer</h3>
+                    <form id="volunteer-form">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Full Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Area of Interest</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                                    <option value="">Select area</option>
+                                    <option value="delivery">Food Delivery</option>
+                                    <option value="warehouse">Food Bank Operations</option>
+                                    <option value="helpline">Helpline Support</option>
+                                    <option value="outreach">Community Outreach</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Available Hours</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" required>
+                                    <option value="">Select availability</option>
+                                    <option value="weekdays">Weekdays</option>
+                                    <option value="weekends">Weekends</option>
+                                    <option value="evenings">Evenings</option>
+                                    <option value="flexible">Flexible</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                                Join as Volunteer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Impact</h2>
+                <p class="text-xl text-gray-600">Making a difference, one meal at a time</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-green-100 rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-users text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Families Helped</h3>
+                    <p class="text-gray-600">Over 2,500 families receive regular food assistance through our network</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-leaf text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Food Waste Reduced</h3>
+                    <p class="text-gray-600">Preventing over 10,000 kg of food waste by redistributing excess food</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Community Impact</h3>
+                    <p class="text-gray-600">Building stronger communities through food security and mutual support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-utensils text-green-400 text-2xl mr-3"></i>
+                        <span class="font-bold text-xl">Zero Hunger</span>
+                    </div>
+                    <p class="text-gray-400">Connecting communities to end hunger, one meal at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#donate" class="hover:text-white transition">Donate Food</a></li>
+                        <li><a href="#request" class="hover:text-white transition">Request Food</a></li>
+                        <li><a href="#volunteer" class="hover:text-white transition">Volunteer</a></li>
+                        <li><a href="#find" class="hover:text-white transition">Find Food Banks</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>1-800-HUNGER</li>
+                        <li><i class="fas fa-envelope mr-2"></i>help@zerohunger.org</li>
+                        <li><i class="fas fa-clock mr-2"></i>24/7 Helpline Available</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Zero Hunger Initiative. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

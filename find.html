@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="description" content="Find food banks and food assistance locations near you. Zero Hunger Initiative directory of food banks.">
+    <meta name="keywords" content="food bank finder, food assistance, food pantry, hunger relief locations">
+    <meta name="author" content="Zero Hunger Initiative">
+    <title>Find Food Banks - Zero Hunger Initiative</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-green-600 text-2xl mr-3"></i>
+                    <span class="font-bold text-xl text-gray-800">Zero Hunger</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600 transition">Home</a>
+                    <a href="donate.html" class="text-gray-700 hover:text-green-600 transition">Donate Food</a>
+                    <a href="request.html" class="text-gray-700 hover:text-green-600 transition">Request Food</a>
+                    <a href="find.html" class="text-green-600 font-semibold hover:text-green-600 transition">Find Food Banks</a>
+                    <a href="map.html" class="text-gray-700 hover:text-green-600 transition">Live Map</a>
+                    <a href="volunteer.html" class="text-gray-700 hover:text-green-600 transition">Volunteer</a>
+                    <a href="impact.html" class="text-gray-700 hover:text-green-600 transition">Our Impact</a>
+                </div>
+                <button class="md:hidden" id="mobile-menu-button">
+                    <i class="fas fa-bars text-gray-700 text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Home</a>
+                <a href="donate.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Donate Food</a>
+                <a href="request.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Request Food</a>
+                <a href="find.html" class="block px-3 py-2 text-green-600 font-semibold hover:text-green-600">Find Food Banks</a>
+                <a href="map.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Live Map</a>
+                <a href="volunteer.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Volunteer</a>
+                <a href="impact.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Our Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-teal-600 to-teal-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Find Food Banks</h1>
+                <p class="text-xl md:text-2xl text-teal-100">Locate food assistance in your area</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-50 rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800 text-center">Search for Food Banks Near You</h2>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="location-search" placeholder="Enter your city or zip code" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500">
+                    <button onclick="searchFoodBanks()" class="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition">
+                        <i class="fas fa-search mr-2"></i>Search
+                    </button>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-gray-600">Or <a href="map.html" class="text-teal-600 hover:underline">use our interactive map</a> for visual navigation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-3xl font-bold text-teal-600 mb-2">85</div>
+                    <div class="text-gray-600">Total Food Banks</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-3xl font-bold text-teal-600 mb-2">50+</div>
+                    <div class="text-gray-600">Cities Covered</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-3xl font-bold text-teal-600 mb-2">24/7</div>
+                    <div class="text-gray-600">Emergency Support</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-3xl font-bold text-teal-600 mb-2">15min</div>
+                    <div class="text-gray-600">Average Response Time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Banks Results -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Featured Food Banks</h2>
+                <p class="text-xl text-gray-600">Some of our key locations</p>
+            </div>
+            <div id="food-banks-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Food bank cards will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- State-by-State Directory -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Browse by State</h2>
+                <p class="text-xl text-gray-600">Find food banks in your state</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">California</div>
+                    <div class="text-sm text-gray-600">15 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">New York</div>
+                    <div class="text-sm text-gray-600">12 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Texas</div>
+                    <div class="text-sm text-gray-600">10 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Florida</div>
+                    <div class="text-sm text-gray-600">8 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Illinois</div>
+                    <div class="text-sm text-gray-600">6 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Pennsylvania</div>
+                    <div class="text-sm text-gray-600">5 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Ohio</div>
+                    <div class="text-sm text-gray-600">5 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Georgia</div>
+                    <div class="text-sm text-gray-600">4 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Michigan</div>
+                    <div class="text-sm text-gray-600">4 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">North Carolina</div>
+                    <div class="text-sm text-gray-600">4 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">New Jersey</div>
+                    <div class="text-sm text-gray-600">3 locations</div>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:bg-teal-50 transition">
+                    <div class="font-semibold text-gray-800">Virginia</div>
+                    <div class="text-sm text-gray-600">3 locations</div>
+                </a>
+            </div>
+            <div class="text-center mt-8">
+                <button class="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition">
+                    View All States
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Assistance -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Types of Food Assistance</h2>
+                <p class="text-xl text-gray-600">Different services available</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-teal-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-shopping-basket text-teal-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Food Pantries</h3>
+                    <p class="text-gray-600">Grocery-style food distribution for families and individuals</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-utensils text-teal-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Soup Kitchens</h3>
+                    <p class="text-gray-600">Hot meals served on-site for those in immediate need</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-truck text-teal-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Mobile Food Banks</h3>
+                    <p class="text-gray-600">Food delivery to underserved and rural communities</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-child text-teal-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">School Programs</h3>
+                    <p class="text-gray-600">Backpack programs and school meal assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Information -->
+    <section class="py-16 bg-red-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-red-100 border-l-4 border-red-500 p-8 rounded-lg">
+                <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-3xl mr-4 mt-1"></i>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-red-800 mb-4">Emergency Food Assistance</h3>
+                        <p class="text-red-700 mb-4">If you need immediate food assistance, don't wait. Help is available 24/7.</p>
+                        <div class="space-y-2">
+                            <p class="text-red-700"><strong>Emergency Helpline:</strong> <a href="tel:1-800-HUNGER" class="text-red-900 font-bold underline">1-800-HUNGER</a></p>
+                            <p class="text-red-700"><strong>Text for Help:</strong> Text "FOOD" to 55155</p>
+                            <p class="text-red-700"><strong>Online Chat:</strong> Available 24/7 on our website</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-utensils text-green-400 text-2xl mr-3"></i>
+                        <span class="font-bold text-xl">Zero Hunger</span>
+                    </div>
+                    <p class="text-gray-400">Connecting communities to end hunger, one meal at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="donate.html" class="hover:text-white transition">Donate Food</a></li>
+                        <li><a href="request.html" class="hover:text-white transition">Request Food</a></li>
+                        <li><a href="volunteer.html" class="hover:text-white transition">Volunteer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>1-800-HUNGER</li>
+                        <li><i class="fas fa-envelope mr-2"></i>help@zerohunger.org</li>
+                        <li><i class="fas fa-clock mr-2"></i>24/7 Helpline Available</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Zero Hunger Initiative. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
